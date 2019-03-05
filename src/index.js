@@ -9,4 +9,10 @@ const receipt = new Receipt([
   bread
 ])
 
-console.log(receipt.receiptDisplay)
+console.log(receipt.totalPrice)
+
+const pie = new Good(3)
+
+receipt.addProduct(pie)
+
+console.log(receipt.totalPrice)
