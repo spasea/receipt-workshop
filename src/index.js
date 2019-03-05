@@ -1,18 +1,20 @@
 import Good from './Good'
 import Receipt from './Receipt'
+import GoodsPresenter from './GoodsPresenter'
 
-const apple = new Good(2.4)
-const bread = new Good(1.5)
+const apple = new Good(2.4, 'apple')
+const bread = new Good(1.5, 'bread')
 
 const receipt = new Receipt([
   apple,
   bread
-])
+], GoodsPresenter)
 
-console.log(receipt.totalPrice)
-
-const pie = new Good(3)
+const pie = new Good(3, 'pie')
 
 receipt.addProduct(pie)
 
-console.log(receipt.totalPrice)
+const secondApple = new Good(2.4, 'apple')
+receipt.addProduct(secondApple)
+
+console.log(receipt.receiptDisplay)
