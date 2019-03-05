@@ -21,7 +21,10 @@ const secondApple = new Good(2.4, 'apple')
 productsList.addProduct(secondApple)
 
 const productsDisplay = productsList.products.map(GoodPresenter.execute)
-const receipt = productsDisplay.join('') + '\n' + productsList.totalPriceDisplay
-
+productsList.closeReceipt()
+const receipt = productsDisplay.join('') + '\n' + productsList.totalPriceDisplay + '\n' + productsList.date
 
 console.log(receipt)
+
+
+productsList.addProduct(apple)

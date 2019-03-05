@@ -1,9 +1,15 @@
 class Receipt {
   constructor (products) {
     this.products = products
+    this.isClosed = false
   }
 
   addProduct (product) {
+    if (this.isClosed) {
+      console.log('Receipt is already closed')
+      return
+    }
+
     this.products.push(product)
 
     this.optimizeProducts()
@@ -28,11 +34,28 @@ class Receipt {
   }
 
   get totalPrice () {
+    if (!this.isClosed) {
+      const error = 'You must close receipt first'
+      console.log(error)
+      return error
+    }
+
     return this.products.reduce((acc, product) => product.price + acc, 0)
   }
 
   get totalPriceDisplay () {
+    if (!this.isClosed) {
+      const error = 'You must close receipt first'
+      console.log(error)
+      return error
+    }
+
     return this.formatter.execute('Total: ' + this.totalPrice + '$', 37, true, ' ')
+  }
+
+  closeReceipt () {
+    this.date = new Date()
+    this.isClosed = true
   }
 }
 
