@@ -1,20 +1,26 @@
 class Receipt {
-  constructor (products, presenter) {
+  constructor (products) {
     this.products = products
-    this.presenter = presenter
   }
 
   addProduct (product) {
     this.products.push(product)
   }
 
+  addGoodsPresenter (presenter) {
+    this.presenter = presenter
+  }
+
+  addStringFormatter (formatter) {
+    this.formatter = formatter
+  }
+
   get totalPrice () {
     return this.products.reduce((acc, product) => product.price + acc, 0)
   }
 
-  get receiptDisplay () {
-    const productsList = this.products.map(this.presenter.execute)
-    return productsList.join('') + this.totalPrice + '$'
+  get totalPriceDisplay () {
+    return this.formatter.execute('Total: ' + this.totalPrice + '$', 37, true, ' ')
   }
 }
 
