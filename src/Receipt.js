@@ -5,10 +5,22 @@ class Receipt {
 
   addProduct (product) {
     this.products.push(product)
+
+    this.optimizeProducts()
   }
 
-  addGoodsPresenter (presenter) {
-    this.presenter = presenter
+  optimizeProducts () {
+    const optimizedList = this.products.reduce((acc, product) => {
+      if (!acc.hasOwnProperty(product.name)) {
+        acc[product.name] = product
+        return acc
+      }
+
+      acc[product.name].addQuantity(product.quantity)
+      return acc
+    }, {})
+
+    this.products = Object.values(optimizedList)
   }
 
   addStringFormatter (formatter) {

@@ -11,7 +11,6 @@ const productsList = new Receipt([
   bread
 ])
 
-productsList.addGoodsPresenter(GoodPresenter)
 productsList.addStringFormatter(StringFormatter)
 
 const pie = new Good(3, 'pie')
