@@ -1,7 +1,8 @@
 class Good {
-  constructor (price, name) {
+  constructor (id, price, name) {
     this.price = price
     this.name = name
+    this.id = id
   }
 }
 
