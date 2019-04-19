@@ -11,27 +11,35 @@ describe('string operations', () => {
     const string = 'apple'
     const length = string.length
 
-    expect(StringFormatter.execute(string, length)).toBe(string)
+    expect(StringFormatter.execute(string, { length })).toBe(string)
   })
 
   it('should return cut string if the length is shorter than string length', () => {
     const string = 'apple'
     const length = 3
 
-    expect(StringFormatter.execute(string, length)).toBe('app')
+    expect(StringFormatter.execute(string, { length })).toBe('app')
   })
 
   it('should return string with filament if the length is longer than string length', () => {
     const string = 'apple'
     const length = 7
 
-    expect(StringFormatter.execute(string, length)).toBe('apple..')
+    expect(StringFormatter.execute(string, { length })).toBe('apple..')
   })
 
   it('should use correct filament', () => {
     const string = 'apple'
     const length = 7
 
-    expect(StringFormatter.execute(string, length, '#')).toBe('apple##')
+    expect(StringFormatter.execute(string, { length, filler: '#' })).toBe('apple##')
+  })
+
+  it('should return string with filament on start', () => {
+    const string = 'apple'
+    const length = 7
+    const fromStart = true
+
+    expect(StringFormatter.execute(string, { length, fromStart })).toBe('..apple')
   })
 })
